@@ -1,8 +1,11 @@
 /**
- * ESP32-C6 BLE Message Server + AHT20+BMP280 Data Logger  v4.3
+ * ESP32-C6 BLE Message Server + AHT20+BMP280 Data Logger  v4.4
+ * ─────────────────────────────────────────────────────────────
+ * Changelog v4.4
+ *   ~ Buffer size: 99 → 25 samples (stops recording when full, no overwrite)
  * ─────────────────────────────────────────────────────────────
  * Changelog v4.3
- *   ~ Buffer size: 20 → 100 samples (stops recording when full, no overwrite)
+ *   ~ Buffer size: 20 → 99 samples (stops recording when full, no overwrite)
  *   ~ MQTT removed
  *   ~ Buffer stops writing to flash when full; live sensor notify still runs
  *   ~ Web UI simplified (SSID/Password only)
@@ -87,7 +90,7 @@ unsigned long ledLastMs  = 0;
 
 // ── Sensor Data Logger ────────────────────────────────────────────────────────
 #define SAMPLE_INTERVAL_MS 1000
-#define BUF_SIZE            99
+#define BUF_SIZE            25
 
 struct SensorSample {
     float temp_aht;   // °C  from AHT20
@@ -437,7 +440,7 @@ static const char HTML[] PROGMEM = R"HTML(
   <div class="sensorinfo">
     AHT20: <b>%AHTST%</b> &nbsp;|&nbsp; BMP280: <b>%BMPST%</b>
     &nbsp;(SDA=GPIO20, SCL=GPIO18)<br>
-    Samples stored: <b>%AN%/99</b>
+    Samples stored: <b>%AN%/25</b>
     &nbsp;|&nbsp; Latest &mdash; Temp: <b>%TV%&deg;C</b>
     &nbsp; Hum: <b>%HV%%</b> &nbsp; Pres: <b>%PV% hPa</b>
     &nbsp;&nbsp;<a href="/data">Download JSON</a>
