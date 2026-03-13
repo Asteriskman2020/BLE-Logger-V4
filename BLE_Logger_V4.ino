@@ -87,7 +87,7 @@ unsigned long ledLastMs  = 0;
 
 // ── Sensor Data Logger ────────────────────────────────────────────────────────
 #define SAMPLE_INTERVAL_MS 1000
-#define BUF_SIZE           100
+#define BUF_SIZE            99
 
 struct SensorSample {
     float temp_aht;   // °C  from AHT20
@@ -437,7 +437,7 @@ static const char HTML[] PROGMEM = R"HTML(
   <div class="sensorinfo">
     AHT20: <b>%AHTST%</b> &nbsp;|&nbsp; BMP280: <b>%BMPST%</b>
     &nbsp;(SDA=GPIO20, SCL=GPIO18)<br>
-    Samples stored: <b>%AN%/100</b>
+    Samples stored: <b>%AN%/99</b>
     &nbsp;|&nbsp; Latest &mdash; Temp: <b>%TV%&deg;C</b>
     &nbsp; Hum: <b>%HV%%</b> &nbsp; Pres: <b>%PV% hPa</b>
     &nbsp;&nbsp;<a href="/data">Download JSON</a>
